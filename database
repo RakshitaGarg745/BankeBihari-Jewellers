@@ -1,0 +1,174 @@
+CREATE DATABASE IF NOT EXISTS bankebihari_jewellers;
+USE bankebihari_jewellers;
+
+CREATE TABLE Customers(
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) UNIQUE,
+    email VARCHAR(100),
+    password VARCHAR(255),
+    address TEXT,
+    city VARCHAR(50),
+    state VARCHAR(50),
+    pincode VARCHAR(10),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Products(
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(150) NOT NULL,
+    category VARCHAR(50),
+    metal VARCHAR(30),
+    purity VARCHAR(20),
+    weight DECIMAL(8,2),
+    making_charges DECIMAL(10,2),
+    price DECIMAL(12,2),
+    stock INT DEFAULT 0,
+    description TEXT,
+    image VARCHAR(255),
+    status ENUM('Available','Out of Stock') DEFAULT 'Available',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Suppliers(
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    supplier_name VARCHAR(100),
+    phone VARCHAR(15),
+    email VARCHAR(100),
+    address TEXT
+);
+
+CREATE TABLE Employees(
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_name VARCHAR(100),
+    phone VARCHAR(15),
+    designation VARCHAR(50),
+    salary DECIMAL(10,2)
+);
+
+INSERT INTO Customers(full_name,phone,email,address,city,state,pincode) VALUES
+('Rahul Sharma','9876543210','rahul@gmail.com','Model Town','Ludhiana','Punjab','141001'),
+('Priya Verma','9876543211','priya@gmail.com','Civil Lines','Patiala','Punjab','147001'),
+('Aman Gupta','9876543212','aman@gmail.com','Sector 22','Chandigarh','Chandigarh','160022');
+
+INSERT INTO Suppliers(supplier_name,phone,email,address) VALUES
+('Jaipur Jewels','9876500001','jaipur@gmail.com','Jaipur'),
+('Delhi Gold House','9876500002','delhi@gmail.com','Delhi');
+
+INSERT INTO Employees(employee_name,phone,designation,salary) VALUES
+('Rohit Kumar','9876501000','Manager',45000),
+('Pooja Sharma','9876501001','Sales Executive',28000);
+
+INSERT INTO Products(product_name,category,metal,purity,weight,making_charges,price,stock,description) VALUES
+('Gold Ring','Ring','Gold','22K',6.50,3000,45000,20,'Traditional Gold Ring'),
+('Diamond Necklace','Necklace','Gold','18K',20.50,10000,180000,8,'Diamond Necklace'),
+('Silver Anklet','Anklet','Silver','92.5',15.00,700,5000,30,'Silver Anklet');
+
+CREATE TABLE Purchases(
+ purchase_id INT AUTO_INCREMENT PRIMARY KEY,
+ supplier_id INT,
+ purchase_date DATE,
+ total_amount DECIMAL(12,2),
+ FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id)
+);
+
+CREATE TABLE PurchaseItems(
+ item_id INT AUTO_INCREMENT PRIMARY KEY,
+ purchase_id INT,
+ product_id INT,
+ quantity INT,
+ price DECIMAL(12,2),
+ FOREIGN KEY (purchase_id) REFERENCES Purchases(purchase_id),
+ FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+CREATE TABLE Bookings(
+ booking_id INT AUTO_INCREMENT PRIMARY KEY,
+ customer_id INT,
+ booking_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+ advance_amount DECIMAL(12,2),
+ booking_status ENUM('Pending','Accepted','Rejected','Confirmed','Completed') DEFAULT 'Pending',
+ delivery_type ENUM('Visit Shop','Home Delivery'),
+ visit_date DATE,
+ FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE BookingItems(
+ booking_item_id INT AUTO_INCREMENT PRIMARY KEY,
+ booking_id INT,
+ product_id INT,
+ quantity INT,
+ price DECIMAL(12,2),
+ FOREIGN KEY(booking_id) REFERENCES Bookings(booking_id),
+ FOREIGN KEY(product_id) REFERENCES Products(product_id)
+);
+
+CREATE TABLE Sales(
+ sale_id INT AUTO_INCREMENT PRIMARY KEY,
+ customer_id INT,
+ sale_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+ total_amount DECIMAL(12,2),
+ amount_paid DECIMAL(12,2),
+ amount_left DECIMAL(12,2),
+ sale_type ENUM('Shop','Online'),
+ FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE SaleItems(
+ sale_item_id INT AUTO_INCREMENT PRIMARY KEY,
+ sale_id INT,
+ product_id INT,
+ quantity INT,
+ price DECIMAL(12,2),
+ FOREIGN KEY(sale_id) REFERENCES Sales(sale_id),
+ FOREIGN KEY(product_id) REFERENCES Products(product_id)
+);
+
+CREATE TABLE Orders(
+ order_id INT AUTO_INCREMENT PRIMARY KEY,
+ customer_id INT,
+ order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+ total_amount DECIMAL(12,2),
+ order_status ENUM('Pending','Packed','Shipped','Delivered') DEFAULT 'Pending',
+ FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE OrderItems(
+ order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+ order_id INT,
+ product_id INT,
+ quantity INT,
+ price DECIMAL(12,2),
+ FOREIGN KEY(order_id) REFERENCES Orders(order_id),
+ FOREIGN KEY(product_id) REFERENCES Products(product_id)
+);
+
+CREATE TABLE Payments(
+ payment_id INT AUTO_INCREMENT PRIMARY KEY,
+ customer_id INT,
+ amount DECIMAL(12,2),
+ payment_type ENUM('Advance','Full Payment','Remaining Payment'),
+ payment_method ENUM('Cash','UPI','Card'),
+ payment_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Addresses(
+ address_id INT AUTO_INCREMENT PRIMARY KEY,
+ customer_id INT,
+ full_address TEXT,
+ city VARCHAR(50),
+ state VARCHAR(50),
+ pincode VARCHAR(10),
+ FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Admin(
+ admin_id INT AUTO_INCREMENT PRIMARY KEY,
+ username VARCHAR(50) UNIQUE,
+ password VARCHAR(255),
+ full_name VARCHAR(100)
+);
+
+INSERT INTO Admin(username,password,full_name)
+VALUES('admin','admin123','BankeBihari Owner');
