@@ -36,7 +36,7 @@ function Customers() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/customers"
+               `${process.env.REACT_APP_API_URL}/customers`
             );
 
             console.log(res.data);
@@ -83,7 +83,7 @@ function Customers() {
         try {
     
             await axios.delete(
-                `http://localhost:3001/customers/${id}`
+                `${process.env.REACT_APP_API_URL}/customers/${id}`
             );
     
             alert("Customer Deleted Successfully");
@@ -105,7 +105,7 @@ function Customers() {
         try {
     
             await axios.put(
-                `http://localhost:3001/customers/${editingId}`,
+                `${process.env.REACT_APP_API_URL}/customers/${editingId}`,
                 editingCustomer
             );
     
@@ -131,7 +131,7 @@ function Customers() {
         try {
     
             await axios.post(
-                "http://localhost:3001/customers",
+                `${process.env.REACT_APP_API_URL}/customers`,
                 newCustomer
             );
     

@@ -8,7 +8,7 @@ function Products(){
 
     useEffect(() => {
         axios
-            .get("http://localhost:3001/products")
+            .get(`${process.env.REACT_APP_API_URL}/products`)
             .then((res) => {
                 console.log(res.data);
                 setProducts(res.data);

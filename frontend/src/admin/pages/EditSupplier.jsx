@@ -21,7 +21,7 @@ function EditSupplier() {
             try {
 
                 const res = await axios.get(
-                    `http://localhost:3001/suppliers/${id}`
+                    `${process.env.REACT_APP_API_URL}/suppliers/${id}`
                 );
 
                 setSupplier(res.data);
@@ -56,7 +56,7 @@ function EditSupplier() {
         try {
 
             await axios.put(
-                `http://localhost:3001/suppliers/${id}`,
+                `${process.env.REACT_APP_API_URL}/suppliers/${id}`,
                 supplier
             );
 

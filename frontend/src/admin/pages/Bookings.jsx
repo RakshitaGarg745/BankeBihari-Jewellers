@@ -24,7 +24,7 @@ function Bookings() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/booking/all"
+               `${process.env.REACT_APP_API_URL}/booking/all`
             );
 
             setBookings(res.data);
@@ -46,7 +46,7 @@ function Bookings() {
         try {
 
             const res = await axios.get(
-                `http://localhost:3001/booking/admin/${id}`
+                `${process.env.REACT_APP_API_URL}/booking/admin/${id}`
             );
 
             setSelectedBooking(res.data);
@@ -73,7 +73,7 @@ function Bookings() {
 
             await axios.put(
 
-                `http://localhost:3001/booking/update/${id}`,
+                `${process.env.REACT_APP_API_URL}`/booking/update/${id}`,
 
                 {
 
@@ -102,7 +102,7 @@ function Bookings() {
         try {
     
             await axios.delete(
-                `http://localhost:3001/booking/delete/${id}`
+                `${process.env.REACT_APP_API_URL}/booking/delete/${id}`
             );
     
             fetchBookings();

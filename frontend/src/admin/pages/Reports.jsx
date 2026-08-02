@@ -20,7 +20,7 @@ function Reports() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/reports/sales"
+                `${process.env.REACT_APP_API_URL}/reports/sales`
             );
 
             setSummary(res.data.summary);

@@ -84,7 +84,7 @@ function OrderDetails() {
 
                                 <img
 
-                                    src={`http://localhost:3001/uploads/${item.image}`}
+                                    src={`${process.env.REACT_APP_API_URL}/uploads/${item.image}`}
 
                                     alt=""
 

@@ -33,7 +33,7 @@ function AddSale() {
 
         try {
 
-            const res = await axios.get("http://localhost:3001/sales/customers");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/sales/customers`);
 
             setCustomers(res.data);
 
@@ -49,7 +49,7 @@ function AddSale() {
 
         try {
 
-            const res = await axios.get("http://localhost:3001/sales/products");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/sales/products`);
 
             setProducts(res.data);
 
@@ -141,7 +141,7 @@ function AddSale() {
 
             await axios.post(
 
-                "http://localhost:3001/sales",
+                `${process.env.REACT_APP_API_URL}/sales`,
 
                 {
 

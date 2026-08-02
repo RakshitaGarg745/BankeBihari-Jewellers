@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {
+    getMyBookings,
+    cancelBooking,
+    payAdvance
+} from "../services/bookingService";
 
 function MyBookings() {
 
@@ -19,7 +24,7 @@ function MyBookings() {
 
             const res = await axios.get(
 
-                "http://localhost:3001/booking/my",
+                `${process.env.REACT_APP_API_URL}/booking/my`,
 
                 {
 

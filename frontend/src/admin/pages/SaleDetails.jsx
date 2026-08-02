@@ -20,7 +20,7 @@ function SaleDetails() {
         try {
 
             const res = await axios.get(
-                `http://localhost:3001/sales/${id}`
+               `${process.env.REACT_APP_API_URL}/sales/${id}`
             );
 
             setSale(res.data.sale);
@@ -74,7 +74,7 @@ function SaleDetails() {
             className="btn btn-success me-2"
             onClick={() =>
                 window.open(
-                    `http://localhost:3001/invoice/${id}`,
+                    `${process.env.REACT_APP_API_URL}/invoice/${id}`,
                     "_blank"
                 )
             }
@@ -83,7 +83,7 @@ function SaleDetails() {
         </button>
 
         <a
-            href={`http://localhost:3001/invoice/${id}`}
+            href={`${process.env.REACT_APP_API_URL}/invoice/${id}`}
             target="_blank"
             rel="noreferrer"
             className="btn btn-primary"

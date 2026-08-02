@@ -19,7 +19,7 @@ function Orders() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/orders/admin"
+                `${process.env.REACT_APP_API_URL}/orders/admin`
             );
 
             setOrders(res.data);
@@ -37,7 +37,7 @@ function Orders() {
         try {
     
             const res = await axios.get(
-                `http://localhost:3001/orders/admin/${id}`
+                `${process.env.REACT_APP_API_URL}/orders/admin/${id}`
             );
     
             setSelectedOrder(res.data);
@@ -58,7 +58,7 @@ function Orders() {
         try {
 
             await axios.put(
-                `http://localhost:3001/orders/admin/status/${id}`,
+                `${process.env.REACT_APP_API_URL}/orders/admin/status/${id}`,
                 {
                     order_status: status
                 }
@@ -79,7 +79,7 @@ function Orders() {
         try {
     
             await axios.put(
-                `http://localhost:3001/orders/admin/payment/${id}`,
+                `${process.env.REACT_APP_API_URL}/orders/admin/payment/${id}`,
                 {
                     payment_status: "Paid"
                 }
@@ -104,7 +104,7 @@ function Orders() {
         try {
 
             await axios.delete(
-                `http://localhost:3001/orders/admin/${id}`
+                `${process.env.REACT_APP_API_URL}/orders/admin/${id}`
             );
 
             fetchOrders();
@@ -421,7 +421,7 @@ function Orders() {
                             <td>
 
                                 <img
-                                    src={`http://localhost:3001/uploads/${item.image}`}
+                                    src={`${process.env.REACT_APP_API_URL}/uploads/${item.image}`}
                                     width="60"
                                     alt={item.product_name}
                                 />

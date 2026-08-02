@@ -74,7 +74,7 @@ useEffect(()=>{
 
   const fetchDashboard = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/dashboard");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/dashboard`);
       setDashboard(res.data);
     } catch (err) {
       console.log(err);
@@ -86,7 +86,7 @@ useEffect(()=>{
     
     const res=await axios.get(
     
-    "http://localhost:3001/dashboard-chart/monthly-sales"
+    `${process.env.REACT_APP_API_URL}/dashboard-chart/monthly-sales`
     
     );
     
@@ -110,7 +110,7 @@ useEffect(()=>{
     
     const res=await axios.get(
     
-    "http://localhost:3001/dashboard-chart/monthly-purchases"
+    `${process.env.REACT_APP_API_URL}/dashboard-chart/monthly-purchases`
     
     );
     
@@ -134,7 +134,7 @@ useEffect(()=>{
     
     const res=await axios.get(
     
-    "http://localhost:3001/dashboard-chart/order-status"
+   `${process.env.REACT_APP_API_URL}/dashboard-chart/order-status`
     
     );
     
@@ -158,7 +158,7 @@ useEffect(()=>{
     
     const res=await axios.get(
     
-    "http://localhost:3001/dashboard-chart/low-stock"
+    `${process.env.REACT_APP_API_URL}/dashboard-chart/low-stock`
     
     );
     

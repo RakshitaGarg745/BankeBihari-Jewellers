@@ -20,7 +20,7 @@ function Suppliers() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/suppliers"
+                `${process.env.REACT_APP_API_URL}/suppliers`
             );
 
             setSuppliers(res.data);
@@ -44,7 +44,7 @@ function Suppliers() {
         try {
 
             await axios.delete(
-                `http://localhost:3001/suppliers/${id}`
+                `${process.env.REACT_APP_API_URL}/suppliers/${id}`
             );
 
             fetchSuppliers();

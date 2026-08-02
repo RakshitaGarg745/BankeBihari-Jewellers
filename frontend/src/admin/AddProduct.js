@@ -63,7 +63,7 @@ function AddProduct() {
         }
     
         axios.post(
-            "http://localhost:3001/products",
+           `${process.env.REACT_APP_API_URL}/products`,
             formData,
             {
                 headers: {

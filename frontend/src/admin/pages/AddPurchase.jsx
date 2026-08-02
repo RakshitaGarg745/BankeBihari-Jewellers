@@ -42,7 +42,7 @@ function AddPurchase() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/suppliers"
+                `${process.env.REACT_APP_API_URL}/suppliers`
             );
 
             setSuppliers(res.data);
@@ -60,7 +60,7 @@ function AddPurchase() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/products"
+                `${process.env.REACT_APP_API_URL}/products`
             );
 
             setProducts(res.data);
@@ -188,7 +188,7 @@ function AddPurchase() {
 
             await axios.post(
 
-                "http://localhost:3001/purchases",
+               `${process.env.REACT_APP_API_URL}/purchases`,
 
                 {
 

@@ -31,7 +31,7 @@ function AddCustomer() {
         try {
 
             await axios.post(
-                "http://localhost:3001/customers",
+                `${process.env.REACT_APP_API_URL}/customers`,
                 customer
             );
 

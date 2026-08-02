@@ -26,7 +26,7 @@ function EditCustomer() {
         try {
 
             const res = await axios.get(
-                `http://localhost:3001/customers/${id}`
+                `${process.env.REACT_APP_API_URL}/customers/${id}`
             );
 
             setCustomer(res.data[0]);
@@ -52,7 +52,7 @@ function EditCustomer() {
         try {
 
             await axios.put(
-                `http://localhost:3001/customers/${id}`,
+                `${process.env.REACT_APP_API_URL}/customers/${id}`,
                 customer
             );
 

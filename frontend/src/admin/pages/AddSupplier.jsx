@@ -35,7 +35,7 @@ function AddSupplier() {
 
             await axios.post(
 
-                "http://localhost:3001/suppliers",
+               `${process.env.REACT_APP_API_URL}/suppliers`,
 
                 supplier
 

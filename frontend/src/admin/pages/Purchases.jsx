@@ -20,7 +20,7 @@ function Purchases() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/purchases"
+                `${process.env.REACT_APP_API_URL}/purchases`
             );
 
             setPurchases(res.data);
@@ -44,7 +44,7 @@ function Purchases() {
         try {
 
             await axios.delete(
-                `http://localhost:3001/purchases/${id}`
+                `${process.env.REACT_APP_API_URL}/purchases/${id}`
             );
 
             fetchPurchases();

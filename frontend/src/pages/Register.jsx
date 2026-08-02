@@ -61,7 +61,7 @@ function Register() {
             setLoading(true);
 
             await axios.post(
-                "http://localhost:3001/customers/send-registration-otp",
+                `${process.env.REACT_APP_API_URL}/customers/send-registration-otp`,
                 {
                     email: formData.email
                 }
@@ -105,7 +105,7 @@ function Register() {
         try {
 
             await axios.post(
-                "http://localhost:3001/customers/verify-registration-otp",
+                `${process.env.REACT_APP_API_URL}/customers/verify-registration-otp`,
                 {
                     email: formData.email,
                     otp

@@ -24,7 +24,7 @@ function CustomerList() {
     
             const res = await axios.get(
     
-                `http://localhost:3001/customers/search?keyword=${keyword}`
+                `${process.env.REACT_APP_API_URL}/customers/search?keyword=${keyword}`
     
             );
     
@@ -40,7 +40,7 @@ function CustomerList() {
 
     const fetchCustomers = async () => {
         try {
-            const res = await axios.get("http://localhost:3001/customers");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/customers`);
             setCustomers(res.data);
         } catch (err) {
             console.log(err);
@@ -65,7 +65,7 @@ function CustomerList() {
         try {
     
             await axios.delete(
-                `http://localhost:3001/customers/${id}`
+                `${process.env.REACT_APP_API_URL}/customers/${id}`
             );
     
             alert("Customer Deleted Successfully");

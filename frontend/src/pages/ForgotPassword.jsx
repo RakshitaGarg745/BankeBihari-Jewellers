@@ -36,7 +36,7 @@ function ForgotPassword() {
     
                 await axios.post(
     
-                    "http://localhost:3001/customers/forgot-password/send-otp",
+                    `${process.env.REACT_APP_API_URL}/customers/forgot-password/send-otp`,
     
                     {
                         email
@@ -86,7 +86,7 @@ function ForgotPassword() {
 
             await axios.post(
 
-                "http://localhost:3001/customers/forgot-password/verify-otp",
+                `${process.env.REACT_APP_API_URL}/customers/forgot-password/verify-otp`,
 
                 {
                     email,
@@ -131,7 +131,7 @@ function ForgotPassword() {
     
                 await axios.post(
     
-                    "http://localhost:3001/customers/reset-password",
+                    `${process.env.REACT_APP_API_URL}/customers/reset-password`,
     
                     {
                         email,

@@ -29,13 +29,13 @@ function Inventory() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/inventory"
+                `${process.env.REACT_APP_API_URL}/inventory`
             );
 
             setProducts(res.data);
             const statsRes =
 await axios.get(
-"http://localhost:3001/inventory/stats"
+`${process.env.REACT_APP_API_URL}/inventory/stats`
 );
 
 setStats(statsRes.data);

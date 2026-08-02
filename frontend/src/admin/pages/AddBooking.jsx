@@ -32,7 +32,7 @@ function AddBooking() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/customers"
+                `${process.env.REACT_APP_API_URL}/customers`
             );
 
             setCustomers(res.data);
@@ -50,7 +50,7 @@ function AddBooking() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/products"
+               `${process.env.REACT_APP_API_URL}/products`
             );
 
             setProducts(res.data);
@@ -115,7 +115,7 @@ function AddBooking() {
 
             await axios.post(
 
-                "http://localhost:3001/booking/admin/add",
+                `${process.env.REACT_APP_API_URL}/booking/admin/add`,
 
                 {
 

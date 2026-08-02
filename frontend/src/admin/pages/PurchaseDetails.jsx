@@ -24,7 +24,7 @@ function PurchaseDetails() {
 
             const res = await axios.get(
 
-                `http://localhost:3001/purchases/${id}`
+                `${process.env.REACT_APP_API_URL}/purchases/${id}`
 
             );
 

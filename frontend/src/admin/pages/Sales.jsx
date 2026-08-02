@@ -17,7 +17,7 @@ function Sales() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/sales"
+                `${process.env.REACT_APP_API_URL}/sales`
             );
 
             setSales(res.data);
@@ -36,7 +36,7 @@ function Sales() {
 
         await axios.delete(
 
-            `http://localhost:3001/sales/${id}`
+            `${process.env.REACT_APP_API_URL}/sales/${id}`
 
         );
 

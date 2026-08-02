@@ -39,7 +39,7 @@ const [isEdit, setIsEdit] = useState(false);
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/products"
+                `${process.env.REACT_APP_API_URL}/products`
             );
 
             setProducts(res.data);
@@ -120,7 +120,7 @@ const [isEdit, setIsEdit] = useState(false);
 
             await axios.post(
 
-                "http://localhost:3001/products",
+                `${process.env.REACT_APP_API_URL}/products`,
 
                 formData,
 
@@ -190,7 +190,7 @@ const [isEdit, setIsEdit] = useState(false);
     
             await axios.put(
     
-                `http://localhost:3001/products/${editingId}`,
+                `${process.env.REACT_APP_API_URL}/products/${editingId}`,
     
                 formData
     
@@ -227,7 +227,7 @@ const [isEdit, setIsEdit] = useState(false);
         try {
     
             await axios.delete(
-                `http://localhost:3001/products/${id}`
+                `${process.env.REACT_APP_API_URL}/products/${id}`
             );
     
             alert("Product Deleted Successfully");
@@ -363,7 +363,7 @@ const [isEdit, setIsEdit] = useState(false);
                                             <img
 src={
     item.image
-        ? `http://localhost:3001/uploads/${item.image}`
+        ? `${process.env.REACT_APP_API_URL}/uploads/${item.image}`
         : "/no-image.png"
 }
                                                 alt=""

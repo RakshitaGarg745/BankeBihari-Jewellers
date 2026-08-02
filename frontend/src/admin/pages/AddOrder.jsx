@@ -42,7 +42,7 @@ function AddOrder() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/customers"
+                `${process.env.REACT_APP_API_URL}/customers`
             );
 
             setCustomers(res.data);
@@ -64,7 +64,7 @@ function AddOrder() {
         try {
 
             const res = await axios.get(
-                "http://localhost:3001/products"
+                `${process.env.REACT_APP_API_URL}/products`
             );
 
             setProducts(res.data);
@@ -192,7 +192,7 @@ function AddOrder() {
             
 
             await axios.post(
-                "http://localhost:3001/orders/admin/add",
+                `${process.env.REACT_APP_API_URL}/orders/admin/add`,
                 {
                     customer_id: customerId,
                     payment_method: paymentMethod,

@@ -14,7 +14,7 @@ function Products() {
     const loadProducts = () => {
 
         axios
-            .get("http://localhost:3001/products")
+            .get(`${process.env.REACT_APP_API_URL}/products`)
             .then((res) => {
                 setProducts(res.data);
             })
@@ -35,7 +35,7 @@ function Products() {
         }
     
         axios
-            .get(`http://localhost:3001/products/search?name=${value}`)
+            .get(`${process.env.REACT_APP_API_URL}/products/search?name=${value}`)
             .then((res) => {
     
                 setProducts(res.data);
@@ -57,7 +57,7 @@ function Products() {
         if (!confirmDelete) return;
     
         axios
-            .delete(`http://localhost:3001/products/${id}`)
+            .delete(`${process.env.REACT_APP_API_URL}/products/${id}`)
             .then((res) => {
     
                 alert(res.data.message);
@@ -150,7 +150,7 @@ function Products() {
         product.image ?
 
         <img
-            src={`http://localhost:3001/uploads/${product.image}`}
+            src={`${process.env.REACT_APP_API_URL}/uploads/${product.image}`}
             alt={product.product_name}
             width="80"
             height="80"

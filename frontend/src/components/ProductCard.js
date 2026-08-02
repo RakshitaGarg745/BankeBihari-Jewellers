@@ -9,7 +9,7 @@ function ProductCard({ product }) {
             <div className="card shadow h-100">
 
                 <img
-                    src={`http://localhost:3001/uploads/${product.image}`}
+                    src={`${process.env.REACT_APP_API_URL}/${product.image}`}
                     className="card-img-top"
                     alt={product.product_name}
                     height="250"

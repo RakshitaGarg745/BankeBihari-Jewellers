@@ -22,12 +22,12 @@ function EditProduct() {
     useEffect(() => {
 
         axios
-            .get(`http://localhost:3001/products/${id}`)
+            .get(`${process.env.REACT_APP_API_URL}/products/${id}`)
             .then((res) => {
 
                 setProduct(res.data);
                 setPreview(
-                    `http://localhost:3001/uploads/${res.data.image}`
+                    `${process.env.REACT_APP_API_URL}/uploads/${res.data.image}`
                 );
 
             })
@@ -84,7 +84,7 @@ function EditProduct() {
         }
     
         axios.put(
-            `http://localhost:3001/products/${id}`,
+            `${process.env.REACT_APP_API_URL}/products/${id}`,
             formData,
             {
                 headers: {

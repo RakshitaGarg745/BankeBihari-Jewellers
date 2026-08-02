@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:3001/cart";
+const API = `${process.env.REACT_APP_API_URL}/cart`;
 
 const getToken = () => localStorage.getItem("token");
 
@@ -16,7 +16,7 @@ export const addToCart = async (product_id) => {
 
     const response = await axios({
         method: "post",
-        url: "http://localhost:3001/cart",
+        url: `${process.env.REACT_APP_API_URL}/cart`,
         data: {
             product_id: product_id
         },
