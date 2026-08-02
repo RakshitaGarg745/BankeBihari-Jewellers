@@ -2,9 +2,17 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
+const app = express();
+app.use(cors({
+    origin: [
+        "http://localhost:3000",
+        "https://YOUR_PROJECT.vercel.app"
+    ],
+    credentials: true
+}));
 require("dotenv").config();
 
-const app = express();
+
 
 const db = require("./config/db");
 
@@ -35,10 +43,7 @@ const paymentRoutes = require("./routes/paymentRoutes");
 console.log("Payment Routes:", paymentRoutes);
 console.log("Type:", typeof paymentRoutes);
 // Middleware
-app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true
-}));
+
 
 app.use(express.json());
 
