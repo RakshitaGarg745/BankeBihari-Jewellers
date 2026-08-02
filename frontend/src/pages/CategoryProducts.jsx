@@ -81,9 +81,12 @@ function CategoryProducts() {
             setProducts(data);
 
         } catch (err) {
-
-            console.log(err);
-
+            console.log("FULL ERROR:", err);
+            console.log("Response:", err.response);
+            console.log("Data:", err.response?.data);
+            console.log("Status:", err.response?.status);
+        
+            alert(JSON.stringify(err.response?.data || err.message));
         } finally {
 
             setLoading(false);
@@ -142,7 +145,7 @@ function CategoryProducts() {
                                     <div className="card product-card h-100">
 
                                         <img
-                                            src={`http://localhost:3001/uploads/${product.image}`}
+                                            src={`${process.env.REACT_APP_API_URL}/uploads/${product.image}`}
                                             className="card-img-top product-image"
                                             alt={product.product_name}
                                         />
