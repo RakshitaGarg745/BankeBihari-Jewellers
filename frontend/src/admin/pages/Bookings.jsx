@@ -72,17 +72,11 @@ function Bookings() {
         try {
 
             await axios.put(
-
-                `${process.env.REACT_APP_API_URL}`/booking/update/${id}`,
-
+                `${process.env.REACT_APP_API_URL}/booking/update/${id}`,
                 {
-
                     booking_status: status,
-
-                    owner_remark: status
-
+                    owner_remark: status,
                 }
-
             );
 
             fetchBookings();
@@ -101,10 +95,9 @@ function Bookings() {
     
         try {
     
-            await axios.delete(
-                `${process.env.REACT_APP_API_URL}/booking/delete/${id}`
-            );
-    
+          await axios.delete(
+    `${process.env.REACT_APP_API_URL}/booking/delete/${id}`
+);
             fetchBookings();
     
         } catch (err) {
@@ -405,11 +398,11 @@ function Bookings() {
 
                             <td>
 
-                                <img
-                                    src={`http://localhost:3001/uploads/${selectedBooking.image}`}
-                                    width="100"
-                                    alt={selectedBooking.product_name}
-                                />
+                            <img
+    src={`${process.env.REACT_APP_API_URL}/uploads/${selectedBooking.image}`}
+    width="100"
+    alt={selectedBooking.product_name}
+/>
 
                             </td>
 

@@ -56,7 +56,7 @@ function MyBookings() {
 
             await axios.delete(
 
-                `http://localhost:3001/booking/cancel/${id}`,
+                `${process.env.REACT_APP_API_URL}/booking/cancel/${id}`,
 
                 {
 
