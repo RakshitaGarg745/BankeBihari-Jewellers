@@ -186,7 +186,7 @@ function CategoryProducts() {
     onClick={() => handleWishlist(product.product_id)}
 >
     ❤️ Wishlist
-</button>>
+</button>
 
                                                 <button
     className="btn btn-warning"
