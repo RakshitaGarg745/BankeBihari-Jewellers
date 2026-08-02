@@ -1,0 +1,218 @@
+.dashboard-container{
+
+    background:#f8f5ef;
+
+    min-height:100vh;
+
+    padding:30px;
+
+}
+
+.dashboard-header{
+
+    text-align:center;
+
+    background:linear-gradient(135deg,#5a1a1a,#8b0000);
+
+    color:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+}
+
+.dashboard-header h1{
+
+    font-size:42px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+}
+
+.dashboard-header p{
+
+    font-size:18px;
+
+    margin-top:10px;
+
+}
+
+.welcome-card{
+
+    background:white;
+
+    margin-top:25px;
+
+    padding:25px;
+
+    border-left:8px solid #d4af37;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+
+}
+
+.cards-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+.dashboard-card{
+
+    color:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    transition:.3s;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.2);
+
+    text-align:center;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card-icon{
+
+    font-size:45px;
+
+    margin-bottom:15px;
+
+}
+
+.gold{
+
+    background:linear-gradient(135deg,#d4af37,#f5d76e);
+
+    color:black;
+
+}
+
+.maroon{
+
+    background:linear-gradient(135deg,#5a1a1a,#8b0000);
+
+}
+
+.blue{
+
+    background:linear-gradient(135deg,#0d6efd,#4dabf7);
+
+}
+
+.green{
+
+    background:linear-gradient(135deg,#198754,#20c997);
+
+}
+
+.purple{
+
+    background:linear-gradient(135deg,#6f42c1,#b197fc);
+
+}
+
+.orange{
+
+    background:linear-gradient(135deg,#fd7e14,#ffc107);
+
+    color:black;
+
+}
+
+/* ================= Charts ================= */
+
+.chart-grid{
+
+    display:grid;
+    
+    grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+    
+    gap:25px;
+    
+    margin-top:25px;
+    
+    margin-bottom:30px;
+    
+    }
+    
+    .chart-card{
+    
+    background:#fff;
+    
+    padding:25px;
+    
+    border-radius:20px;
+    
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    
+    border-top:6px solid #D4AF37;
+    
+    }
+    
+    .chart-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        height: 420px;
+      }
+    
+    .low-stock-table{
+    
+    width:100%;
+    
+    border-collapse:collapse;
+    
+    margin-top:15px;
+    
+    }
+    
+    .low-stock-table th{
+    
+    background:#D4AF37;
+    
+    padding:12px;
+    
+    color:#fff;
+    
+    }
+    
+    .low-stock-table td{
+    
+    padding:12px;
+    
+    border-bottom:1px solid #ddd;
+    
+    }
+    
+    .low-stock-table tr:hover{
+    
+    background:#f8f5ef;
+    
+    }
+    .chart-container {
+        position: relative;
+        width: 100%;
+        height: 320px;
+      }
