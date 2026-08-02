@@ -35,18 +35,19 @@ function ProductDetails() {
 
 
     useEffect(() => {
+
+        const fetchProduct = async () => {
+            try {
+                const data = await getProductById(id);
+                setProduct(data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+    
         fetchProduct();
-    }, []);
-
-    const fetchProduct = async () => {
-        try {
-            const data = await getProductById(id);
-            setProduct(data);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
+    
+    }, [id]);
     const handleAddToCart = async () => {
 
         const token = localStorage.getItem("token");
