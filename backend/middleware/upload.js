@@ -1,41 +1,19 @@
 const multer = require("multer");
-const path = require("path");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary").v2;
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, "../uploads"));
-    },
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: "bankebihari-jewellers",
+        allowed_formats: ["jpg", "jpeg", "png", "webp"]
     }
 });
 
-// Allow only image files
-const fileFilter = (req, file, cb) => {
-
-    const allowedTypes = /jpeg|jpg|png|webp/;
-
-    const isValid =
-        allowedTypes.test(path.extname(file.originalname).toLowerCase());
-
-    if (isValid) {
-
-        cb(null, true);
-
-    } else {
-
-        cb(new Error("Only image files are allowed!"));
-
-    }
-
-};
-
-const upload = multer({
-
-    storage,
-    fileFilter
-
-});
-
-module.exports = upload;
+module.exports = multer({ storage });

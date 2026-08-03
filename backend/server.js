@@ -5,11 +5,11 @@ const cors = require("cors");
 const app = express();
 app.use(cors({
     origin: [
-        "http://localhost:3000",
-        process.env.FRONTEND_URL
+      "http://localhost:3000",
+      process.env.FRONTEND_URL
     ],
     credentials: true
-}));
+  }));
 require("dotenv").config();
 
 
@@ -47,7 +47,7 @@ console.log("Type:", typeof paymentRoutes);
 
 app.use(express.json());
 
-app.use("/uploads", express.static("uploads"));
+
 
 // API Routes
 app.use("/products", productRoutes);
