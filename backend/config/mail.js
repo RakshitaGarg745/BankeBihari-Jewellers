@@ -1,24 +1,10 @@
-const nodemailer = require("nodemailer");
+const brevo = require("@getbrevo/brevo");
 
-console.log("EMAIL_USER =", process.env.EMAIL_USER);
-console.log("SMTP HOST = smtp-relay.brevo.com");
+const apiInstance = new brevo.TransactionalEmailsApi();
 
-const transporter = nodemailer.createTransport({
-    host: "smtp-relay.brevo.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+apiInstance.setApiKey(
+    brevo.TransactionalEmailsApiApiKeys.apiKey,
+    process.env.BREVO_API_KEY
+);
 
-transporter.verify(function (error, success) {
-    if (error) {
-        console.log("SMTP VERIFY ERROR:", error);
-    } else {
-        console.log("SMTP READY");
-    }
-});
-
-module.exports = transporter;
+module.exports = apiInstance;
