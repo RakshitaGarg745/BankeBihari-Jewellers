@@ -445,6 +445,8 @@ exports.sendForgotPasswordOTP = async (req, res) => {
             expires: Date.now() + 5 * 60 * 1000
 
         };
+        console.log(process.env.EMAIL_USER);
+console.log(process.env.EMAIL_PASS ? "PASS FOUND" : "PASS MISSING");
 
         await transporter.sendMail({
 
