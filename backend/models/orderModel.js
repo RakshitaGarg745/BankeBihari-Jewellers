@@ -159,38 +159,49 @@ VALUES (?,?,?,?,?)
     // ===========================
     // Order Details
     // ===========================
-    getOrderDetails: (
-        orderId,
-        callback
-    ) => {
+    // ===========================
+// Order Details
+// ===========================
+getOrderDetails: (
+    orderId,
+    callback
+) => {
 
-        const sql = `
-SELECT
-    o.order_id,
-    c.full_name,
-    o.order_date,
-    o.total_amount,
-    o.payment_method,
-    o.payment_status,
-    o.order_status
-FROM Orders o
-JOIN Customers c
-ON o.customer_id = c.customer_id
-ORDER BY o.order_id DESC
+    const sql = `
+    SELECT
 
-JOIN OrderItems oi
-ON o.order_id = oi.order_id
+        oi.order_item_id,
+        oi.quantity,
+        oi.price,
 
-JOIN Products p
-ON oi.product_id = p.product_id
+        p.product_name,
+        p.image,
 
-WHERE o.order_id = ?
-`;
-        db.query(sql, [orderId])
-            .then(([rows]) => callback(null, rows))
-            .catch(err => callback(err));
+        o.order_id,
+        o.order_date,
+        o.order_status,
+        o.payment_method,
+        o.payment_status,
+        o.total_amount
 
-    },
+    FROM Orders o
+
+    JOIN OrderItems oi
+    ON o.order_id = oi.order_id
+
+    JOIN Products p
+    ON oi.product_id = p.product_id
+
+    WHERE o.order_id = ?
+
+    ORDER BY oi.order_item_id
+    `;
+
+    db.query(sql, [orderId])
+        .then(([rows]) => callback(null, rows))
+        .catch(err => callback(err));
+
+},
 
     // ===========================
     // Admin - All Orders
@@ -419,7 +430,7 @@ adminAddOrder: async (
         );
 
     },
-    
+
     updatePaymentStatus: async (id, paymentStatus) => {
 
         await db.query(
