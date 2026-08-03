@@ -369,3 +369,30 @@ exports.deleteOrder = async (req, res) => {
     }
 
 };
+
+exports.updatePaymentStatus = async (req, res) => {
+
+    try {
+
+        await Order.updatePaymentStatus(
+            req.params.id,
+            req.body.payment_status
+        );
+
+        res.json({
+            success: true,
+            message: "Payment Status Updated"
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+
+    }
+
+};

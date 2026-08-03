@@ -418,8 +418,31 @@ adminAddOrder: async (
             [id]
         );
 
-    }
+    },
+    
+    updatePaymentStatus: async (id, paymentStatus) => {
+
+        await db.query(
+    
+            `
+            UPDATE Orders
+            SET payment_status = ?
+            WHERE order_id = ?
+            `,
+    
+            [
+                paymentStatus,
+                id
+            ]
+    
+        );
+    
+    },
+    
+
 
 };
+
+
 
 module.exports = Order;

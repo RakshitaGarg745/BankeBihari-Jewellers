@@ -31,5 +31,9 @@ router.put("/admin/status/:id", orderController.updateStatus);
 
 // Delete Order
 router.delete("/admin/:id", orderController.deleteOrder);
+router.put(
+    "/admin/payment/:id",
+    orderController.updatePaymentStatus
+);
 
 module.exports = router;
