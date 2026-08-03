@@ -176,6 +176,10 @@ exports.login = async (req, res) => {
         }
 
         const customer = result[0];
+        console.log("Result:", result);
+console.log("Customer:", customer);
+console.log("Password from request:", password, typeof password);
+console.log("Password from DB:", customer.password, typeof customer.password);
 
         const match = await bcrypt.compare(
 
