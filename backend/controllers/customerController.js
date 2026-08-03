@@ -41,15 +41,46 @@ exports.addCustomer = async (req, res) => {
 
 // Update customer
 exports.updateCustomer = async (req, res) => {
+
     try {
-        await Customer.updateCustomer(req.params.id, req.body);
+
+        const customer = { ...req.body };
+
+        if (customer.password && customer.password.trim() !== "") {
+
+            customer.password = await bcrypt.hash(
+                customer.password,
+                10
+            );
+
+            await Customer.updateCustomerWithPassword(
+                req.params.id,
+                customer
+            );
+
+        } else {
+
+            await Customer.updateCustomerWithoutPassword(
+                req.params.id,
+                customer
+            );
+
+        }
 
         res.json({
             message: "Customer Updated Successfully"
         });
+
     } catch (err) {
-        res.status(500).json(err);
+
+        console.log(err);
+
+        res.status(500).json({
+            message: "Server Error"
+        });
+
     }
+
 };
 
 // Delete customer

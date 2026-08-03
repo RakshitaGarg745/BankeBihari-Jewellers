@@ -221,3 +221,65 @@ exports.updatePasswordByEmail = async (email, password) => {
 
     return result;
 };
+
+exports.updateCustomerWithoutPassword = async (id, customer) => {
+
+    const sql = `
+    UPDATE Customers
+    SET
+        full_name=?,
+        phone=?,
+        email=?,
+        address=?,
+        city=?,
+        state=?,
+        pincode=?
+    WHERE customer_id=?
+    `;
+
+    await db.query(sql, [
+
+        customer.full_name,
+        customer.phone,
+        customer.email,
+        customer.address,
+        customer.city,
+        customer.state,
+        customer.pincode,
+        id
+
+    ]);
+
+};
+
+exports.updateCustomerWithPassword = async (id, customer) => {
+
+    const sql = `
+    UPDATE Customers
+    SET
+        full_name=?,
+        phone=?,
+        email=?,
+        password=?,
+        address=?,
+        city=?,
+        state=?,
+        pincode=?
+    WHERE customer_id=?
+    `;
+
+    await db.query(sql, [
+
+        customer.full_name,
+        customer.phone,
+        customer.email,
+        customer.password,
+        customer.address,
+        customer.city,
+        customer.state,
+        customer.pincode,
+        id
+
+    ]);
+
+};
