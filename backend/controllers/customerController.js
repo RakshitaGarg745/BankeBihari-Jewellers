@@ -323,7 +323,7 @@ exports.sendRegistrationOTP = async (req, res) => {
 
         await transporter.sendMail({
 
-            from: process.env.EMAIL_USER,
+            from: '"BankeBihari Jewellers" <bankebiharijewellers26@gmail.com>',
 
             to: email,
 
@@ -450,7 +450,7 @@ console.log(process.env.EMAIL_PASS ? "PASS FOUND" : "PASS MISSING");
 
         await transporter.sendMail({
 
-            from: process.env.EMAIL_USER,
+            from: '"BankeBihari Jewellers" <bankebiharijewellers26@gmail.com>',
 
             to: email,
 
