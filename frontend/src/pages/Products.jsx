@@ -150,8 +150,8 @@ function Products() {
         product.image ?
 
         <img
-            src={`${process.env.REACT_APP_API_URL}/uploads/${product.image}`}
-            alt={product.product_name}
+        src={product.image}
+        alt={product.product_name}
             width="80"
             height="80"
             style={{

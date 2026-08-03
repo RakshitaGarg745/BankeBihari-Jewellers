@@ -84,7 +84,7 @@ function OrderDetails() {
 
                                 <img
 
-                                    src={`${process.env.REACT_APP_API_URL}/uploads/${item.image}`}
+                                    src={item.image}
 
                                     alt=""
 

@@ -145,7 +145,7 @@ function CategoryProducts() {
                                     <div className="card product-card h-100">
 
                                         <img
-                                            src={`${process.env.REACT_APP_API_URL}/uploads/${product.image}`}
+                                            src={product.image}
                                             className="card-img-top product-image"
                                             alt={product.product_name}
                                         />

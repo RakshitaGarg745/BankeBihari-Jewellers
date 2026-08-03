@@ -361,11 +361,11 @@ const [isEdit, setIsEdit] = useState(false);
                                             item.image ?
     
                                             <img
-src={
-    item.image
-        ? `${process.env.REACT_APP_API_URL}/uploads/${item.image}`
-        : "/no-image.png"
-}
+                                            src={
+                                                item.image
+                                                    ? item.image
+                                                    : "/no-image.png"
+                                            }
                                                 alt=""
     
                                                 width="70"

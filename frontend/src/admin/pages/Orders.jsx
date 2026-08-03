@@ -421,7 +421,7 @@ function Orders() {
                             <td>
 
                                 <img
-                                    src={`${process.env.REACT_APP_API_URL}/uploads/${item.image}`}
+                                    src={item.image}
                                     width="60"
                                     alt={item.product_name}
                                 />

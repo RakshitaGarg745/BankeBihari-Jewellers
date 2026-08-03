@@ -145,7 +145,7 @@ function Collections() {
                                     <div className="card h-100 shadow">
 
                                         <img
-                                            src={`${process.env.REACT_APP_API_URL}/uploads/${product.image}`}
+                                            src={product.image}
                                             alt={product.product_name}
                                             className="card-img-top"
                                             style={{

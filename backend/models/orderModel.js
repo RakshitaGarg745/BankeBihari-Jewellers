@@ -293,6 +293,10 @@ getSingleOrder: async (id) => {
 // ADMIN ADD ORDER
 // ===========================
 
+// ===========================
+// ADMIN ADD ORDER
+// ===========================
+
 adminAddOrder: async (
     customerId,
     addressId,
@@ -306,11 +310,11 @@ adminAddOrder: async (
     for (let item of items) {
 
         const [product] = await db.query(
-            "SELECT price,stock FROM Products WHERE product_id=?",
+            "SELECT price, stock FROM Products WHERE product_id=?",
             [item.product_id]
         );
 
-        if (product.length == 0)
+        if (product.length === 0)
             throw new Error("Product Not Found");
 
         if (product[0].stock < item.quantity)
@@ -319,35 +323,33 @@ adminAddOrder: async (
         item.price = product[0].price;
 
         total += product[0].price * item.quantity;
-
     }
 
     // Create Order
-
     const [order] = await db.query(
         `
         INSERT INTO Orders
-(
-    customer_id,
-    address_id,
-    total_amount,
-    payment_method,
-    payment_status
-)
-VALUES (?,?,?,?,?)
+        (
+            customer_id,
+            address_id,
+            total_amount,
+            payment_method,
+            payment_status
+        )
+        VALUES (?,?,?,?,?)
         `,
         [
             customerId,
             addressId,
             total,
-            paymentMethod
+            paymentMethod,
+            paymentMethod === "Online" ? "Paid" : "Pending"
         ]
     );
 
     const orderId = order.insertId;
 
     // Insert Items + Reduce Stock
-
     for (let item of items) {
 
         await db.query(
@@ -373,18 +375,16 @@ VALUES (?,?,?,?,?)
             `
             UPDATE Products
             SET stock = stock - ?
-            WHERE product_id=?
+            WHERE product_id = ?
             `,
             [
                 item.quantity,
                 item.product_id
             ]
         );
-
     }
 
     return orderId;
-
 },
 
     // ===========================
