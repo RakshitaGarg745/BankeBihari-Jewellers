@@ -1,89 +1,74 @@
 const Address = require("../models/addressModel");
 
-exports.addAddress = (req, res) => {
+exports.addAddress = async (req, res) => {
 
-    const customer_id = req.customer.id;
+    try {
 
-    const {
+        const customer_id = req.customer.id;
 
-        full_name,
-        phone,
-        address_line,
-        city,
-        state,
-        pincode,
-        address_type
+        const {
+            full_name,
+            phone,
+            address_line,
+            city,
+            state,
+            pincode,
+            address_type
+        } = req.body;
 
-    } = req.body;
+        console.log("Customer:", req.customer);
 
-    console.log("Customer:", req.customer);
-
-console.log({
-    customer_id,
-    full_name,
-    phone,
-    address_line,
-    city,
-    state,
-    pincode,
-    address_type
-});
-
-    Address.addAddress({
-
-        customer_id,
-        full_name,
-        phone,
-        address_line,
-        city,
-        state,
-        pincode,
-        address_type
-
-    }, (err) => {
-
-        if (err) {
-            console.error("MySQL Error:", err);
-        
-            return res.status(500).json({
-                message: "Unable to save address",
-                error: err.message,
-                code: err.code
-            });
-        }
-
-        res.json({
-
-            message: "Address Saved Successfully"
-
+        await Address.addAddress({
+            customer_id,
+            full_name,
+            phone,
+            address_line,
+            city,
+            state,
+            pincode,
+            address_type
         });
 
-    });
+        res.json({
+            success: true,
+            message: "Address Saved Successfully"
+        });
+
+    } catch (err) {
+
+        console.error("MySQL Error:", err);
+
+        res.status(500).json({
+            success: false,
+            message: "Unable to save address",
+            error: err.message,
+            code: err.code
+        });
+
+    }
 
 };
+exports.getAddresses = async (req, res) => {
 
-exports.getAddresses = (req, res) => {
+    try {
 
-    const customer_id = req.customer.id;
+        const customer_id = req.customer.id;
 
-    Address.getAddresses(customer_id, (err, result) => {
+        const rows = await Address.getAddresses(customer_id);
 
-        if (err) {
+        res.json(rows);
 
-            return res.status(500).json({
+    } catch (err) {
 
-                message: "Error"
+        console.log(err);
 
-            });
+        res.status(500).json({
+            message: "Error"
+        });
 
-        }
-
-        res.json(result);
-
-    });
+    }
 
 };
-
 // ================= ADMIN =================
 
 // Get Addresses By Customer
