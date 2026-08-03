@@ -1,10 +1,28 @@
-const brevo = require("@getbrevo/brevo");
+const axios = require("axios");
 
-const apiInstance = new brevo.TransactionalEmailsApi();
+exports.sendEmail = async ({ to, subject, html }) => {
 
-apiInstance.setApiKey(
-    brevo.TransactionalEmailsApiApiKeys.apiKey,
-    process.env.BREVO_API_KEY
-);
+    return axios.post(
+        "https://api.brevo.com/v3/smtp/email",
+        {
+            sender: {
+                name: "BankeBihari Jewellers",
+                email: "bankebiharijewellers26@gmail.com"
+            },
+            to: [
+                {
+                    email: to
+                }
+            ],
+            subject,
+            htmlContent: html
+        },
+        {
+            headers: {
+                "api-key": process.env.BREVO_API_KEY,
+                "Content-Type": "application/json"
+            }
+        }
+    );
 
-module.exports = apiInstance;
+};

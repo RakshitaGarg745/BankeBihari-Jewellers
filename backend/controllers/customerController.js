@@ -321,28 +321,19 @@ exports.sendRegistrationOTP = async (req, res) => {
 
         };
 
-        await transporter.sendTransacEmail({
+        await transporter.sendEmail({
 
-            sender: {
-                name: "BankeBihari Jewellers",
-                email: "bankebiharijewellers26@gmail.com"
-            },
-        
-            to: [
-                {
-                    email: email
-                }
-            ],
+            to: email,
         
             subject: "Jewellery Shop Email Verification",
         
-            htmlContent: `
+            html: `
                 <h2>Email Verification</h2>
                 <h1>${otp}</h1>
                 <p>OTP expires in 5 minutes.</p>
             `
+        
         });
-
         res.json({
 
             success: true,
@@ -454,29 +445,20 @@ exports.sendForgotPasswordOTP = async (req, res) => {
         console.log(process.env.EMAIL_USER);
 console.log(process.env.EMAIL_PASS ? "PASS FOUND" : "PASS MISSING");
 
-await transporter.sendTransacEmail({
+await transporter.sendEmail({
 
-    sender: {
-        name: "BankeBihari Jewellers",
-        email: "bankebiharijewellers26@gmail.com"
-    },
-
-    to: [
-        {
-            email: email
-        }
-    ],
+    to: email,
 
     subject: "Reset Password OTP",
 
-    htmlContent: `
+    html: `
         <h2>BankeBihari Jewellers</h2>
         <p>Your OTP for password reset is:</p>
         <h1>${otp}</h1>
         <p>This OTP expires in 5 minutes.</p>
     `
-});
 
+});
         res.json({
 
             success: true,
