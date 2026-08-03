@@ -4,6 +4,10 @@ exports.addToWishlist = async (req, res) => {
 
     try {
 
+        console.log("Decoded Token:", req.customer);
+        console.log("Customer ID:", req.customer.id);
+        console.log("Product ID:", req.body.product_id);
+
         const customerId = req.customer.id;
         const { product_id } = req.body;
 
