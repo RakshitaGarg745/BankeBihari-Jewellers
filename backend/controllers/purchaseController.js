@@ -67,7 +67,8 @@ exports.getPurchaseById = async (req, res) => {
 // ================= ADD PURCHASE =================
 
 exports.addPurchase = async (req, res) => {
-
+    console.log("PURCHASE BODY:");
+    console.log(req.body);
     try {
 
         const {
@@ -129,15 +130,19 @@ exports.addPurchase = async (req, res) => {
     } catch (err) {
 
         console.log(err);
-
+    
         res.status(500).json({
-
+    
             success: false,
-
-            message: "Unable To Save Purchase"
-
+    
+            message: err.message,
+    
+            code: err.code,
+    
+            sqlMessage: err.sqlMessage
+    
         });
-
+    
     }
 
 };
