@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API = `${process.env.REACT_APP_API_URL}/cart`;
+const API = `${process.env.REACT_APP_API_URL}/orders`;
 
 const getToken = () => localStorage.getItem("token");
 
