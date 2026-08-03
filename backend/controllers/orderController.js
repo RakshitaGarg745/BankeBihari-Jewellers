@@ -7,6 +7,7 @@ exports.placeOrder = async (req, res) => {
     const { address, payment_method } = req.body;
     const customerId = req.customer.id;
     let addressId;
+    console.log("====== PLACE ORDER API CALLED ======");
 
     try {
     
