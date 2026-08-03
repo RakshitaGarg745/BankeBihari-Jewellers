@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const API = `${process.env.REACT_APP_API_URL}/cart`;
+const API = `${process.env.REACT_APP_API_URL}/wishlist`;
 
 export const addToWishlist = async (productId) => {
 
     const token = localStorage.getItem("token");
 
     return axios.post(
-        API + "/add",
+        `${API}/add`,
         {
             product_id: productId
         },
@@ -36,12 +36,10 @@ export const removeFromWishlist = async (wishlistId) => {
 
     const token = localStorage.getItem("token");
 
-    return axios.delete(API + "/" + wishlistId, {
-
+    return axios.delete(`${API}/${wishlistId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
-
     });
 
 };
