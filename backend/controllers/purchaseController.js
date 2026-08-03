@@ -89,6 +89,7 @@ exports.addPurchase = async (req, res) => {
         console.log(req.body);
         const purchaseId =
             await purchaseModel.addPurchase({
+                console.log("Purchase ID from model:", purchaseId);
 
                 supplier_id,
                 purchase_date,

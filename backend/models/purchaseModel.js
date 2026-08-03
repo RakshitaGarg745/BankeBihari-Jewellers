@@ -50,6 +50,8 @@ exports.getPurchaseById = async (id) => {
 
 exports.addPurchase = async (purchase) => {
 
+    console.log("Purchase Data:", purchase);
+
     const sql = `
         INSERT INTO Purchases
         (
@@ -76,10 +78,11 @@ exports.addPurchase = async (purchase) => {
 
     ]);
 
+    console.log("Insert Result:", result);
+    console.log("Insert ID:", result.insertId);
+
     return result.insertId;
-
 };
-
 // ================= DELETE PURCHASE =================
 
 exports.deletePurchase = async (id) => {
