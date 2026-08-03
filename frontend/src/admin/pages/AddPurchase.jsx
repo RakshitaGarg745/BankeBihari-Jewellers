@@ -185,6 +185,16 @@ function AddPurchase() {
         }
 
         try {
+            console.log({
+                supplier_id: supplierId,
+                purchase_date: purchaseDate,
+                total_amount: totalAmount,
+                payment_status: paymentStatus,
+                amount_paid: amountPaid,
+                amount_due: amountDue,
+                remarks,
+                items
+            });
 
             await axios.post(
 
