@@ -75,8 +75,10 @@ exports.updateCustomer = async (id, customer) => {
 // Delete customer
 exports.deleteCustomer = async (id) => {
 
-    const sql =
-        "DELETE FROM customers WHERE customer_id = ?";
+    const sql = `
+        DELETE FROM Customers
+        WHERE customer_id = ?
+    `;
 
     await db.query(sql, [id]);
 
