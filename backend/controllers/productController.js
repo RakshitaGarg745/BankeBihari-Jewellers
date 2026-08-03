@@ -49,10 +49,10 @@ exports.addProduct = async (req, res) => {
 
     try {
 
+        console.log(req.file);
         const product = req.body;
 
-        product.image = req.file ? req.file.filename : null;
-
+        product.image = req.file ? req.file.path : null;
         await Product.addProduct(product);
 
         res.status(201).json({
@@ -78,8 +78,8 @@ exports.updateProduct = async (req, res) => {
         const product = req.body;
 
         product.image = req.file
-            ? req.file.filename
-            : req.body.image;
+    ? req.file.path
+    : req.body.image;
 
         await Product.updateProduct(req.params.id, product);
 
