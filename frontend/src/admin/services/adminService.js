@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:3001/admin";
+const API = `${process.env.REACT_APP_API_URL}/admin`;
 
 export const adminLogin = async (data) => {
     return axios.post(`${API}/login`, data);
